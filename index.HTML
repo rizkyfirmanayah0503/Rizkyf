@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizky Firmansyah | Web Profile</title>
+<style>
+:root {
+    --navy: #0f2a45;
+    --blue: #3d6b9a;
+    --soft-blue: #a8c8e8;
+    --bg: #f7ecd9;
+    --card: rgba(255, 250, 240, 0.95);
+    --text: #1f1f1f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background: var(--bg); color: var(--text); padding-bottom: 40px; }
+
+/* HEADER & NAV */
+header {
+    position: sticky; top: 0; z-index: 100; padding: 12px 20px;
+    background: var(--navy); display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.brand { color: #fff; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.logo { background: var(--bg); color: var(--navy); padding: 6px 10px; border-radius: 8px; font-weight: 800; }
+nav { display: flex; gap: 4px; flex-wrap: wrap; }
+nav button {
+    background: transparent; border: none; color: #ccc; padding: 8px 14px;
+    border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.3s;
+}
+nav button:hover, nav button.active { background: var(--bg); color: var(--navy); }
+
+/* CONTAINER & CARD */
+.container { max-width: 800px; margin: 30px auto; padding: 0 16px; }
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.card {
+    background: var(--card); border-radius: 20px; padding: 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 20px;
+}
+.card-title { color: var(--navy); font-size: 20px; margin-bottom: 20px; border-bottom: 3px solid var(--blue); padding-bottom: 8px; }
+
+/* HERO / HOME */
+.hero { text-align: center; }
+.avatar { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid var(--blue); margin-bottom: 12px; }
+.hero h1 { color: var(--navy); font-size: 26px; }
+.tagline { display: inline-block; background: var(--soft-blue); padding: 4px 12px; border-radius: 15px; font-size: 12px; font-weight: 600; margin: 8px 0 14px; }
+.stats { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+.stat .num { font-size: 20px; font-weight: 800; color: var(--blue); display: block; }
+.stat .lbl { font-size: 11px; color: #666; text-transform: uppercase; }
+
+/* PROFILE */
+.profil-grid { display: grid; grid-template-columns: 180px 1fr; gap: 20px; }
+.profil-foto { width: 100%; border-radius: 12px; aspect-ratio: 1; object-fit: cover; }
+.info-row { padding: 8px 12px; background: rgba(0,0,0,0.03); border-radius: 8px; margin-bottom: 8px; font-size: 13.5px; }
+.info-row strong { color: var(--navy); display: inline-block; width: 110px; }
+.tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.tag { background: var(--blue); color: #fff; padding: 4px 10px; border-radius: 12px; font-size: 11px; }
+.about-box { margin-top: 16px; padding: 14px; background: rgba(168,200,232,0.2); border-left: 4px solid var(--blue); border-radius: 6px; font-size: 13.5px; line-height: 1.6; }
+
+/* ALAMAT & MAP */
+.alamat-box { background: rgba(0,0,0,0.03); padding: 14px; border-left: 4px solid var(--blue); border-radius: 6px; margin-bottom: 14px; font-size: 14px; line-height: 1.6; }
+.map-frame { width: 100%; height: 300px; border: 0; border-radius: 12px; }
+
+/* JADWAL */
+.hari-block { margin-bottom: 16px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; }
+.hari-title { background: var(--navy); color: #fff; padding: 10px 16px; font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; }
+.matkul-row { display: flex; justify-content: space-between; padding: 10px 16px; background: #fff; border-bottom: 1px solid #eee; font-size: 13px; }
+.matkul-row:last-child { border-bottom: none; }
+.ruang { background: var(--soft-blue); padding: 2px 8px; border-radius: 10px; font-weight: 600; font-size: 11px; }
+
+/* SOSMED */
+.sosmed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.sosmed-card { padding: 16px; border-radius: 12px; color: #fff; text-decoration: none; text-align: center; font-weight: 700; transition: 0.2s; }
+.sosmed-card:hover { opacity: 0.9; transform: translateY(-2px); }
+.ig { background: linear-gradient(135deg, #f09433, #dc2743, #bc1888); }
+.wa { background: #25d366; }
+.li { background: #0077b5; }
+
+footer { text-align: center; margin-top: 30px; font-size: 12px; color: #666; }
+
+@media (max-width: 600px) {
+    .profil-grid { grid-template-columns: 1fr; text-align: center; }
+    .profil-foto { max-width: 160px; margin: 0 auto; }
+    .info-row strong { display: block; width: auto; margin-bottom: 2px; }
+    .matkul-row { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="brand"><span class="logo">RF</span> Rizky Firmansyah</div>
+    <nav>
+        <button class="nav-btn active" data-page="home">🏠 Home</button>
+        <button class="nav-btn" data-page="profile">👤 Profile</button>
+        <button class="nav-btn" data-page="alamat">📍 Alamat</button>
+        <button class="nav-btn" data-page="jadwal">📅 Jadwal</button>
+        <button class="nav-btn" data-page="sosmed">💬 Sosmed</button>
+    </nav>
+</header>
+
+<div class="container">
+    <!-- HOME -->
+    <section class="page active" id="home">
+        <div class="card hero">
+            <img src="C:\Users\risky\Downloads\rizky.web/foto.jpeg" alt="Rizky Firmansyah" class="avatar">
+            <h1>Halo, Saya Rizky Firmansyah</h1>
+            <span class="tagline">Mahasiswa • Kreatif • Suka Belajar</span>
+            <p style="color:#666; font-size: 14px;">Selamat datang di web profil pribadi saya. Silakan jelajahi menu di atas untuk mengenal saya lebih dekat.</p>
+            <div class="stats">
+                <div class="stat"><span class="num">19</span><span class="lbl">Tahun</span></div>
+                <div class="stat"><span class="num">S1</span><span class="lbl">Jenjang</span></div>
+                <div class="stat"><span class="num">3,7</span><span class="lbl">IPK</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="page" id="profile">
+        <div class="card">
+            <h2 class="card-title">Profil Lengkap</h2>
+            <div class="profil-grid">
+                <img src="C:\Users\risky\Downloads\rizky.web/foto.jpeg" alt="Rizky Firmansyah" class="profil-foto">
+                <div>
+                    <div class="info-row"><strong>Nama:</strong> Rizky Firmansyah</div>
+                    <div class="info-row"><strong>Prodi:</strong> Teknik Geomatika</div>
+                    <div class="info-row"><strong>NIM:</strong> 124230006</div>
+                    <div class="info-row"><strong>TTL:</strong> Dumai, 05 Maret 2006</div>
+                    <div class="info-row">
+                        <strong>Hobi:</strong>
+                        <div class="tags">
+                            <span class="tag">Belajar</span>
+                            <span class="tag">Memasak</span>
+                            <span class="tag">Olahraga</span>
+                            <span class="tag">Gaming</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-box">
+                <strong>Tentang Saya</strong>
+                Saya merupakan individu yang proaktif, teliti, dan berorientasi pada detail dengan kemampuan beradaptasi yang cepat. Terbiasa bekerja secara mandiri maupun berkolaborasi di dalam tim.
+            </div>
+        </div>
+    </section>
+
+    <!-- ALAMAT -->
+    <section class="page" id="alamat">
+        <div class="card">
+            <h2 class="card-title">Alamat Kos</h2>
+            <div class="alamat-box">
+                <strong>Ryacudu Gg. Kopi Raya</strong><br>
+                Jl. Terusan Ryacudu No. 10, Jatisari, Jatimulyo, Kec. Jati Agung, Kabupaten Lampung Selatan, Lampung 35365
+            </div>
+            <iframe class="map-frame" src="https://maps.google.com/maps?q=Jl.%20Terusan%20Ryacudu%20No.10%20Jatisari%20Jatimulyo%20Jati%20Agung%20Lampung%20Selatan&z=15&output=embed" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- JADWAL -->
+    <section class="page" id="jadwal">
+        <div class="card">
+            <h2 class="card-title">Jadwal Kuliah</h2>
+            
+            <div class="hari-block">
+                <div class="hari-title"><span>Senin</span> <span>4 MK</span></div>
+                <div class="matkul-row"><span>07.30 - 09.15 | SIG Berbasis Web</span><span class="ruang">GK2 302</span></div>
+                <div class="matkul-row"><span>11.05 - 12.55 | Agama Islam R3</span><span class="ruang">GK2 403</span></div>
+                <div class="matkul-row"><span>13.00 - 15.40 | Asprak Geodesi Satelit RA-RC</span><span class="ruang">Lab MM</span></div>
+                <div class="matkul-row"><span>15.45 - 17.30 | Penginderaan Jauh Perkotaan</span><span class="ruang">GK2 123</span></div>
+            </div>
+
+            <div class="hari-block">
+                <div class="hari-title"><span>Selasa</span> <span>2 MK</span></div>
+                <div class="matkul-row"><span>07.30 - 11.05 | Praktikum PJL</span><span class="ruang">Lab MM (6)</span></div>
+                <div class="matkul-row"><span>13.00 - 15.40 | Asprak Karto RA</span><span class="ruang">Lab MM</span></div>
+            </div>
+
+            <div class="hari-block">
+                <div class="hari-title"><span>Rabu</span> <span>3 MK</span></div>
+                <div class="matkul-row"><span>07.30 - 10.10 | Praktikum Fotogrametri Dasar</span><span class="ruang">-</span></div>
+                <div class="matkul-row"><span>13.00 - 15.40 | Praktikum Hidrografi I</span><span class="ruang">-</span></div>
+                <div class="matkul-row"><span>13.00 - 14.45 | Fotogrametri Dasar</span><span class="ruang">E307</span></div>
+            </div>
+
+            <div class="hari-block">
+                <div class="hari-title"><span>Kamis</span> <span>4 MK</span></div>
+                <div class="matkul-row"><span>07.30 - 09.15 | Hidrografi I</span><span class="ruang">E313</span></div>
+                <div class="matkul-row"><span>09.20 - 11.05 | Penginderaan Jauh Lanjut</span><span class="ruang">GK2 205</span></div>
+                <div class="matkul-row"><span>13.00 - 14.45 | Pemrograman Geomatika</span><span class="ruang">GK2 203</span></div>
+                <div class="matkul-row"><span>15.45 - 17.30 | Pendaftaran Tanah</span><span class="ruang">GK2 102</span></div>
+            </div>
+
+            <div class="hari-block">
+                <div class="hari-title"><span>Jumat</span> <span>1 MK</span></div>
+                <div class="matkul-row"><span>07.30 - 09.15 | Geografi Lingkungan</span><span class="ruang">GK2 209</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOSMED -->
+    <section class="page" id="sosmed">
+        <div class="card">
+            <h2 class="card-title">Hubungi Saya</h2>
+            <div class="sosmed-grid">
+                <a href="https://www.instagram.com/firmans_rrf" target="_blank" class="sosmed-card ig">Instagram<br><small>@firmans_rrf</small></a>
+                <a href="https://wa.me/qr/A2V7WK5YNQ55I1" target="_blank" class="sosmed-card wa">WhatsApp<br><small>0821-7241-4390</small></a>
+                <a href="https://www.linkedin.com/in/rizky-firmansyah-6b0181323" target="_blank" class="sosmed-card li">LinkedIn<br><small>Rizky Firmansyah</small></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>© 2025 Rizky Firmansyah</footer>
+</div>
+
+<script>
+const btns = document.querySelectorAll('.nav-btn');
+const pages = document.querySelectorAll('.page');
+
+btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        pages.forEach(p => p.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.page).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+</script>
+</body>
+</html>
